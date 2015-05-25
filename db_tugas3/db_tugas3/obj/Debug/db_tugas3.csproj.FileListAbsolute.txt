@@ -1,0 +1,7 @@
+D:\Tugas SU\Sem 2\Sistem_DataBase\tugas\Script\DATABASE_SISTEM\db_tugas3\db_tugas3\bin\Debug\db_tugas3.exe.config
+D:\Tugas SU\Sem 2\Sistem_DataBase\tugas\Script\DATABASE_SISTEM\db_tugas3\db_tugas3\obj\Debug\db_tugas3.csprojResolveAssemblyReference.cache
+D:\Tugas SU\Sem 2\Sistem_DataBase\tugas\Script\DATABASE_SISTEM\db_tugas3\db_tugas3\bin\Debug\db_tugas3.exe
+D:\Tugas SU\Sem 2\Sistem_DataBase\tugas\Script\DATABASE_SISTEM\db_tugas3\db_tugas3\bin\Debug\db_tugas3.pdb
+D:\Tugas SU\Sem 2\Sistem_DataBase\tugas\Script\DATABASE_SISTEM\db_tugas3\db_tugas3\bin\Debug\MySql.Fabric.Plugin.dll
+D:\Tugas SU\Sem 2\Sistem_DataBase\tugas\Script\DATABASE_SISTEM\db_tugas3\db_tugas3\obj\Debug\db_tugas3.exe
+D:\Tugas SU\Sem 2\Sistem_DataBase\tugas\Script\DATABASE_SISTEM\db_tugas3\db_tugas3\obj\Debug\db_tugas3.pdb
