@@ -230,6 +230,74 @@ namespace db_tugas3
 
         public static void  ListQuery()
         {
+            CRUD app = new CRUD();
+            int pilihMenu = 0;
+            bool kondisi;
+            string pilih;
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("\t\t\t\tQuery");
+                Console.WriteLine("\t\t\t\t=================\n");
+                Console.WriteLine("1. IPK masing-masing mahasiswa\n");
+                Console.WriteLine("2. Rata-rata IPK semua mahasiswa\n");
+                Console.WriteLine("3. Rata-rata IPK mahasiswa\n");
+                Console.WriteLine("4. Rata-rata IPK mahasiswi\n");
+                Console.WriteLine("5. Rata-rata Nilai per MK \n");
+                Console.WriteLine("6. 10 IPK tertinggi (data mahasiswa ditampilkan)\n");
+                Console.WriteLine("7.10 IPK terendah (data mahasiswa ditampilkan)\n");
+                Console.WriteLine("8. Daftar mahasiswa/i yang harus mengulang beserta nama MK\n");
+                Console.WriteLine("9. Jumlah mahasiswa yang mendapat masing-masing grade (A,B,C atau D) per MK\n");
+                Console.WriteLine("10. Konversi nilai IPK dari skala 4 ke skala 5 untuk semua data IPK mahasiswa \n");
+                Console.Write("Masukan pilihan anda : ");
+                //pilihBukuMenu = Convert.ToInt16(Console.ReadLine());
+                pilih = Console.ReadLine();
+                kondisi = int.TryParse(pilih, out pilihMenu);
+                if (kondisi == true && pilihMenu > 0 && pilihMenu < 11)
+                {
+                    continue;
+                }
+                Console.WriteLine("Pilihan yang anda masukan salah!");
+                Console.WriteLine("Tekan sembarang untuk memilih kembali...");
+                Console.ReadLine();
+            } while (pilihMenu < 1 || pilihMenu > 11);
+
+            switch (pilihMenu)
+            {
+                case 1:
+                    app.q1();
+                    break;
+                case 2:
+                    app.q2();
+                    break;
+                case 3:
+                    
+                    break;
+
+                case 4:
+                    
+                    break;
+                case 5:
+                    
+                    break;
+                case 6:
+
+                    break;
+                case 7:
+
+                    break;
+                case 8:
+
+                    break;
+
+                case 9:
+
+                    break;
+                case 10:
+
+                    break;
+            }
         }
     }
 }

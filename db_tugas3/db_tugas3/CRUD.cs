@@ -540,7 +540,69 @@ namespace db_tugas3
             Program.TKuliah();
         }
 
-        
+        /// <summary>
+        /// ///////////////////////////////////////////////////query
+        /// </summary>
+        public void q1()
+        {
+            ip();
+            Console.Clear();
+            Console.WriteLine("NIM\t\tIP");
+            connString.Open();
+            MySqlCommand sqlcomm;
+            sqlcomm = connString.CreateCommand();
+            sqlcomm.CommandText = "SELECT * FROM ip";
+            MySqlDataReader sqlDr = sqlcomm.ExecuteReader();
+            while (sqlDr.Read())
+            {
+                string NIM = Convert.ToString(sqlDr["NIM"]);
+                string IP = Convert.ToString(sqlDr["IP"]);
 
+                Console.WriteLine("{0}\t\t{1}",NIM,IP);
+            }
+            connString.Close();
+            Console.WriteLine("Tekan sembarang untuk kembali ke menu...");
+            Console.ReadKey();
+            Program.ListQuery();
+        }
+        public void ip()
+        {
+            connString.Open();
+            MySqlCommand sqlcomm;
+            sqlcomm = connString.CreateCommand();
+            sqlcomm.CommandText = "insert into ip (NIM,IP) SELECT tk.NIM,sum(tk.totalnilaiip / (select sum(SKS) as totalSKS FROM matakuliah where semester = 1)) as IP FROM   tablekuliah tk group by tk.NIM;";
+            try
+            {
+                sqlcomm.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            connString.Close();
+        }
+
+        public void q2()
+        {
+            Console.Clear();
+            connString.Open();
+            Console.WriteLine("IP Tertinggi\t\t\trata-rata IP");
+            MySqlCommand sqlcomm;
+            sqlcomm = connString.CreateCommand();
+            sqlcomm.CommandText = "select max(ip.ip) as IP_Tertinggi,avg(ip.ip) as rataIP from ip;";
+
+            MySqlDataReader sqlDr = sqlcomm.ExecuteReader();
+            while (sqlDr.Read())
+            {
+                string IPMax = Convert.ToString(sqlDr["IP_Tertinggi"]);
+                string IPAvg = Convert.ToString(sqlDr["rataIP"]);
+
+                Console.WriteLine("{0}\t\t\t{1}", IPMax, IPAvg);
+            }
+            connString.Close();
+            Console.WriteLine("Tekan sembarang untuk kembali ke menu...");
+            Console.ReadKey();
+            Program.ListQuery();
+        }
       }
 }
