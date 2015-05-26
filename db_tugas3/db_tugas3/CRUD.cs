@@ -604,5 +604,288 @@ namespace db_tugas3
             Console.ReadKey();
             Program.ListQuery();
         }
+
+        public void q3()
+        {
+            Console.Clear();
+            connString.Open();
+            Console.WriteLine("Rata-rata IP Mahasiswa");
+            MySqlCommand sqlcomm;
+            sqlcomm = connString.CreateCommand();
+            sqlcomm.CommandText = "select avg(ip.IP) as Rata_rata_Mahasiswa from mahasiswa m natural join ip where m.JenisKelamin='M';";
+
+            MySqlDataReader sqlDr = sqlcomm.ExecuteReader();
+            while (sqlDr.Read())
+            {
+                string IPAvg = Convert.ToString(sqlDr["Rata_rata_Mahasiswa"]);
+
+                Console.WriteLine("{0}",IPAvg);
+            }
+            connString.Close();
+            Console.WriteLine("Tekan sembarang untuk kembali ke menu...");
+            Console.ReadKey();
+            Program.ListQuery();
+        }
+
+        public void q4()
+        {
+            Console.Clear();
+            connString.Open();
+            Console.WriteLine("Rata-rata IP Mahasiswi");
+            MySqlCommand sqlcomm;
+            sqlcomm = connString.CreateCommand();
+            sqlcomm.CommandText = "select avg(ip.IP) as Rata_rata_Mahasiswi from mahasiswa m natural join ip where m.JenisKelamin='F';";
+
+            MySqlDataReader sqlDr = sqlcomm.ExecuteReader();
+            while (sqlDr.Read())
+            {
+                string IPAvg = Convert.ToString(sqlDr["Rata_rata_Mahasiswi"]);
+
+                Console.WriteLine("{0}", IPAvg);
+            }
+            connString.Close();
+            Console.WriteLine("Tekan sembarang untuk kembali ke menu...");
+            Console.ReadKey();
+            Program.ListQuery();
+        }
+        public void q5()
+        {
+            Console.Clear();
+            connString.Open();
+            Console.WriteLine("KodeMK\t\tRata-rata Nilai\n\n");
+            MySqlCommand sqlcomm;
+            sqlcomm = connString.CreateCommand();
+            sqlcomm.CommandText = "select tk.KodeMK, avg(tk.Nilai_Angka) as Rata_Rata from tablekuliah tk group by tk.KodeMK;";
+
+            MySqlDataReader sqlDr = sqlcomm.ExecuteReader();
+            while (sqlDr.Read())
+            {
+                string KodeMK = (string)sqlDr["KodeMK"];
+                string Avg = Convert.ToString(sqlDr["Rata_Rata"]);
+
+                Console.WriteLine("{0}\t\t{1}",KodeMK, Avg);
+            }
+            connString.Close();
+            Console.WriteLine("Tekan sembarang untuk kembali ke menu...");
+            Console.ReadKey();
+            Program.ListQuery();
+        }
+        public void q6()
+        {
+            Console.Clear();
+            connString.Open();
+            Console.WriteLine("NIM\tNama Mahasiswa\t\t\t\t\tJenisK\t\tIP\n\n");
+            MySqlCommand sqlcomm;
+            sqlcomm = connString.CreateCommand();
+            sqlcomm.CommandText = "select ip.NIM,m.Nama_Mahasiswa,m.JenisKelamin,ip.ip from ip natural join mahasiswa m order by ip.ip desc limit 10;";
+
+            MySqlDataReader sqlDr = sqlcomm.ExecuteReader();
+            while (sqlDr.Read())
+            {
+                string NIM = Convert.ToString(sqlDr["NIM"]);
+                string nama = (string)sqlDr["Nama_Mahasiswa"];
+                
+                string jk = (string)sqlDr["JenisKelamin"];
+                string ip = Convert.ToString(sqlDr["ip"]);
+
+                if (nama.Length < 8)
+                {
+                    Console.WriteLine("{0}\t{1}\t\t\t\t\t\t{2}\t\t{3}", NIM, nama,jk,ip);
+                }
+                else if (nama.Length < 16)
+                {
+                    Console.WriteLine("{0}\t{1}\t\t\t\t\t{2}\t\t{3}", NIM, nama, jk, ip);
+                }
+                else if (nama.Length < 24)
+                {
+                    Console.WriteLine("{0}\t{1}\t\t\t\t{2}\t\t{3}", NIM, nama,  jk, ip);
+
+                }
+                else if (nama.Length < 31)
+                {
+                    Console.WriteLine("{0}\t{1}\t\t\t{2}\t\t{3}", NIM, nama, jk, ip);
+
+                }
+                else if (nama.Length < 39)
+                {
+                    Console.WriteLine("{0}\t{1}\t\t{2}\t\t{3}", NIM, nama, jk, ip);
+
+                }
+                else
+                {
+                    Console.WriteLine("{0}\t{1}\t{2}\t\t{3}", NIM, nama, jk, ip);
+                }
+            }
+            connString.Close();
+            Console.WriteLine("Tekan sembarang untuk kembali ke menu...");
+            Console.ReadKey();
+            Program.ListQuery();
+        }
+
+        public void q7()
+        {
+            Console.Clear();
+            connString.Open();
+            Console.WriteLine("NIM\tNama Mahasiswa\t\t\t\t\tJenisK\t\tIP\n\n");
+            MySqlCommand sqlcomm;
+            sqlcomm = connString.CreateCommand();
+            sqlcomm.CommandText = "select ip.NIM,m.Nama_Mahasiswa,m.JenisKelamin,ip.ip from ip natural join mahasiswa m order by ip.ip limit 10;";
+
+            MySqlDataReader sqlDr = sqlcomm.ExecuteReader();
+            while (sqlDr.Read())
+            {
+                string NIM = Convert.ToString(sqlDr["NIM"]);
+                string nama = (string)sqlDr["Nama_Mahasiswa"];
+
+                string jk = (string)sqlDr["JenisKelamin"];
+                string ip = Convert.ToString(sqlDr["ip"]);
+
+                if (nama.Length < 8)
+                {
+                    Console.WriteLine("{0}\t{1}\t\t\t\t\t\t{2}\t\t{3}", NIM, nama, jk, ip);
+                }
+                else if (nama.Length < 16)
+                {
+                    Console.WriteLine("{0}\t{1}\t\t\t\t\t{2}\t\t{3}", NIM, nama, jk, ip);
+                }
+                else if (nama.Length < 24)
+                {
+                    Console.WriteLine("{0}\t{1}\t\t\t\t{2}\t\t{3}", NIM, nama, jk, ip);
+
+                }
+                else if (nama.Length < 31)
+                {
+                    Console.WriteLine("{0}\t{1}\t\t\t{2}\t\t{3}", NIM, nama, jk, ip);
+
+                }
+                else if (nama.Length < 39)
+                {
+                    Console.WriteLine("{0}\t{1}\t\t{2}\t\t{3}", NIM, nama, jk, ip);
+
+                }
+                else
+                {
+                    Console.WriteLine("{0}\t{1}\t{2}\t\t{3}", NIM, nama, jk, ip);
+                }
+            }
+            connString.Close();
+            Console.WriteLine("Tekan sembarang untuk kembali ke menu...");
+            Console.ReadKey();
+            Program.ListQuery();
+        }
+
+        public void q8()
+        {
+            Console.Clear();
+            connString.Open();
+            Console.WriteLine("NIM\tNama Mahasiswa\t\t\t\t\tNama MK\n\n");
+            MySqlCommand sqlcomm;
+            sqlcomm = connString.CreateCommand();
+            sqlcomm.CommandText = "select tk.NIM,m.Nama_Mahasiswa,mk.NamaMK from tablekuliah tk natural join Mahasiswa m natural join matakuliah mk where tk.Nilai_Angka<'60';";
+
+            MySqlDataReader sqlDr = sqlcomm.ExecuteReader();
+            while (sqlDr.Read())
+            {
+                string NIM = Convert.ToString(sqlDr["NIM"]);
+                string nama = (string)sqlDr["Nama_Mahasiswa"];
+                string namaMK = (string)sqlDr["NamaMK"];
+
+                if (nama.Length < 8)
+                {
+                    Console.WriteLine("{0}\t{1}\t\t\t\t\t\t{2}", NIM, nama, namaMK);
+                }
+                else if (nama.Length < 16)
+                {
+                    Console.WriteLine("{0}\t{1}\t\t\t\t\t{2}", NIM, nama, namaMK);
+                }
+                else if (nama.Length < 24)
+                {
+                    Console.WriteLine("{0}\t{1}\t\t\t\t{2}", NIM, nama, namaMK);
+
+                }
+                else if (nama.Length < 31)
+                {
+                    Console.WriteLine("{0}\t{1}\t\t\t{2}", NIM, nama, namaMK);
+
+                }
+                else if (nama.Length < 39)
+                {
+                    Console.WriteLine("{0}\t{1}\t\t{2}", NIM, nama, namaMK);
+
+                }
+                else
+                {
+                    Console.WriteLine("{0}\t{1}\t{2}", NIM, nama, namaMK);
+                }
+            }
+            connString.Close();
+            Console.WriteLine("Tekan sembarang untuk kembali ke menu...");
+            Console.ReadKey();
+            Program.ListQuery();
+        }
+        public void q9()
+        {
+            Console.Clear();
+            connString.Open();
+            Console.WriteLine("KodeMK\t\tRata-rata Nilai\t\tJumlah\n\n");
+            MySqlCommand sqlcomm;
+            sqlcomm = connString.CreateCommand();
+            sqlcomm.CommandText = "select tk.KodeMK,Nilai_Huruf, count(Nilai_Huruf) from tablekuliah tk group by KodeMK, Nilai_Huruf;";
+
+            MySqlDataReader sqlDr = sqlcomm.ExecuteReader();
+            while (sqlDr.Read())
+            {
+                string KodeMK = (string)sqlDr["KodeMK"];
+                string nilai = (string)sqlDr["Nilai_Huruf"];
+                string count = Convert.ToString(sqlDr["count(Nilai_Huruf)"]);
+
+                Console.WriteLine("{0}\t\t{1}\t\t\t{2}", KodeMK, nilai,count);
+            }
+            connString.Close();
+            Console.WriteLine("Tekan sembarang untuk kembali ke menu...");
+            Console.ReadKey();
+            Program.ListQuery();
+        }
+
+        public void q10()
+        {
+            ipkon();
+            Console.Clear();
+            Console.WriteLine("NIM\t\tIP Awal\t\tIP Konversi");
+            connString.Open();
+            MySqlCommand sqlcomm;
+            sqlcomm = connString.CreateCommand();
+            sqlcomm.CommandText = "SELECT * FROM db_tugas2.ip_kon;";
+            MySqlDataReader sqlDr = sqlcomm.ExecuteReader();
+            while (sqlDr.Read())
+            {
+                string NIM = Convert.ToString(sqlDr["NIM"]);
+                string IP = Convert.ToString(sqlDr["IP_Awal"]);
+                string IPKon = Convert.ToString(sqlDr["IP_Konversi"]);
+                Console.WriteLine("{0}\t\t{1}\t\t{2}", NIM, IP,IPKon);
+            }
+            connString.Close();
+            Console.WriteLine("Tekan sembarang untuk kembali ke menu...");
+            Console.ReadKey();
+            Program.ListQuery();
+        }
+        public void ipkon()
+        {
+            connString.Open();
+            MySqlCommand sqlcomm;
+            sqlcomm = connString.CreateCommand();
+            sqlcomm.CommandText = "insert into ip_kon (NIM,IP_Awal,IP_Konversi) SELECT ip.NIM,ip.IP,((ip.ip/'4')*'5') FROM ip;";
+            try
+            {
+                sqlcomm.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            connString.Close();
+        }
+
+
       }
 }

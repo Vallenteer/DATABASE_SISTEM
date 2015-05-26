@@ -240,28 +240,29 @@ namespace db_tugas3
                 Console.Clear();
                 Console.WriteLine("\t\t\t\tQuery");
                 Console.WriteLine("\t\t\t\t=================\n");
-                Console.WriteLine("1. IPK masing-masing mahasiswa\n");
-                Console.WriteLine("2. Rata-rata IPK semua mahasiswa\n");
-                Console.WriteLine("3. Rata-rata IPK mahasiswa\n");
-                Console.WriteLine("4. Rata-rata IPK mahasiswi\n");
-                Console.WriteLine("5. Rata-rata Nilai per MK \n");
-                Console.WriteLine("6. 10 IPK tertinggi (data mahasiswa ditampilkan)\n");
-                Console.WriteLine("7.10 IPK terendah (data mahasiswa ditampilkan)\n");
-                Console.WriteLine("8. Daftar mahasiswa/i yang harus mengulang beserta nama MK\n");
-                Console.WriteLine("9. Jumlah mahasiswa yang mendapat masing-masing grade (A,B,C atau D) per MK\n");
-                Console.WriteLine("10. Konversi nilai IPK dari skala 4 ke skala 5 untuk semua data IPK mahasiswa \n");
+                Console.WriteLine("1. Laporan IPK masing-masing mahasiswa\n");
+                Console.WriteLine("2. Laporan IP tertinggi dan Rata-rata IPK semua mahasiswa\n");
+                Console.WriteLine("3. Laporan Rata-rata IPK mahasiswa\n");
+                Console.WriteLine("4. Laporan Rata-rata IPK mahasiswi\n");
+                Console.WriteLine("5. Laporan Rata-rata Nilai per MK \n");
+                Console.WriteLine("6. Laporan 10 IPK tertinggi (data mahasiswa ditampilkan)\n");
+                Console.WriteLine("7. Laporan 10 IPK terendah (data mahasiswa ditampilkan)\n");
+                Console.WriteLine("8. Laporan Daftar mahasiswa/i yang harus mengulang beserta nama MK\n");
+                Console.WriteLine("9. Laporan Jumlah mahasiswa yang mendapat masing-masing grade (A,B,C atau D) per MK\n");
+                Console.WriteLine("10. Laporan Konversi nilai IPK dari skala 4 ke skala 5 untuk semua data IPK mahasiswa \n");
+                Console.WriteLine("11. Kembali ke Menu Utama\n");
                 Console.Write("Masukan pilihan anda : ");
                 //pilihBukuMenu = Convert.ToInt16(Console.ReadLine());
                 pilih = Console.ReadLine();
                 kondisi = int.TryParse(pilih, out pilihMenu);
-                if (kondisi == true && pilihMenu > 0 && pilihMenu < 11)
+                if (kondisi == true && pilihMenu > 0 && pilihMenu < 12)
                 {
                     continue;
                 }
                 Console.WriteLine("Pilihan yang anda masukan salah!");
                 Console.WriteLine("Tekan sembarang untuk memilih kembali...");
                 Console.ReadLine();
-            } while (pilihMenu < 1 || pilihMenu > 11);
+            } while (pilihMenu < 1 || pilihMenu > 12);
 
             switch (pilihMenu)
             {
@@ -272,30 +273,33 @@ namespace db_tugas3
                     app.q2();
                     break;
                 case 3:
-                    
+                    app.q3();
                     break;
-
-                case 4:
                     
+                case 4:
+                    app.q4();
                     break;
                 case 5:
-                    
+                    app.q5();
                     break;
                 case 6:
-
+                    app.q6();
                     break;
                 case 7:
-
+                    app.q7();
                     break;
                 case 8:
-
+                    app.q8();
                     break;
 
                 case 9:
-
+                    app.q9();
                     break;
                 case 10:
-
+                    app.q10();
+                    break;
+                case 11:
+                     Main();
                     break;
             }
         }
