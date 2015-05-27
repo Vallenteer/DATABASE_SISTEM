@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Odbc;
 using System.Web;
+// nulis csv
+using System.IO;
+using System.Reflection;
 //Add mySQL Reference
 using MySql;
 using MySql.Data;
@@ -545,8 +548,31 @@ namespace db_tugas3
         /// </summary>
         public void q1()
         {
+            ///////bkin file
+            string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string file = dir + @"\Q1.csv"; /////rubah naama ini sesuai querynya
+            string delimiter = ",";
+            int tulis = 0;
+            if (!File.Exists(file))
+            {
+                File.Create(file).Close();
+                tulis = 1;
+                string[][] output1 = new string[][]
+                    {
+                        new string[]{"NIM","IP"} //// ubah value judul
+                    };
+                int length1 = output1.GetLength(0);
+                StringBuilder sb1 = new StringBuilder();
+                for (int index = 0; index < length1; index++)
+                {
+                    sb1.AppendLine(string.Join(delimiter, output1[index]));
+                }
+                File.AppendAllText(file, sb1.ToString());
+            }
+            ///////////////////////////////////////////////////////////////////
             ip();
             Console.Clear();
+
             Console.WriteLine("NIM\t\tIP");
             connString.Open();
             MySqlCommand sqlcomm;
@@ -557,7 +583,23 @@ namespace db_tugas3
             {
                 string NIM = Convert.ToString(sqlDr["NIM"]);
                 string IP = Convert.ToString(sqlDr["IP"]);
-
+                //koding masukin ke file .-.
+                if (tulis==1)
+                {
+                    string[][] output = new string[][]
+                    {
+                        new string[]{NIM,IP} 
+                    };
+                    int length = output.GetLength(0);
+                    StringBuilder sb = new StringBuilder();
+                    for (int index = 0; index < length; index++)
+                    {
+                        sb.AppendLine(string.Join(delimiter, output[index]));
+                    }
+                    File.AppendAllText(file, sb.ToString());
+                    
+                }
+                //// ///////////////////////////////////
                 Console.WriteLine("{0}\t\t{1}",NIM,IP);
             }
             connString.Close();
@@ -584,6 +626,29 @@ namespace db_tugas3
 
         public void q2()
         {
+           
+            ///////bkin file
+            int tulis = 0;
+            string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+             string file = dir + @"\Q2.csv"; /////rubah naama ini sesuai querynya
+            string delimiter = ",";
+            if (!File.Exists(file))
+            {
+                File.Create(file).Close();
+                tulis = 1;
+                string[][] output1 = new string[][]
+                    {
+                        new string[]{"IP Tertinggi","rata-rata IP"} //// ubah value judul
+                    };
+                int length1 = output1.GetLength(0);
+                StringBuilder sb1 = new StringBuilder();
+                for (int index = 0; index < length1; index++)
+                {
+                    sb1.AppendLine(string.Join(delimiter, output1[index]));
+                }
+                File.AppendAllText(file, sb1.ToString());
+            }
+            ///////////////////////////////////////////////////////////////////
             Console.Clear();
             connString.Open();
             Console.WriteLine("IP Tertinggi\t\t\trata-rata IP");
@@ -594,9 +659,26 @@ namespace db_tugas3
             MySqlDataReader sqlDr = sqlcomm.ExecuteReader();
             while (sqlDr.Read())
             {
+                
                 string IPMax = Convert.ToString(sqlDr["IP_Tertinggi"]);
                 string IPAvg = Convert.ToString(sqlDr["rataIP"]);
-
+                //koding masukin ke file .-.
+                if (tulis == 1)
+                {
+                    string[][] output = new string[][]
+                    {
+                        new string[]{IPMax,IPAvg} 
+                    };
+                    int length = output.GetLength(0);
+                    StringBuilder sb = new StringBuilder();
+                    for (int index = 0; index < length; index++)
+                    {
+                        sb.AppendLine(string.Join(delimiter, output[index]));
+                    }
+                    File.AppendAllText(file, sb.ToString());
+                    
+                }
+                //// ///////////////////////////////////
                 Console.WriteLine("{0}\t\t\t{1}", IPMax, IPAvg);
             }
             connString.Close();
@@ -607,6 +689,30 @@ namespace db_tugas3
 
         public void q3()
         {
+
+
+            ///////bkin file
+            int tulis = 0;
+            string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+              string file = dir + @"\Q3.csv"; /////rubah naama ini sesuai querynya
+            string delimiter = ",";
+            if (!File.Exists(file))
+            {
+                File.Create(file).Close();
+                tulis = 1;
+                string[][] output1 = new string[][]
+                    {
+                        new string[]{"Rata-rata IP Mahasiswa"} //// ubah value judul
+                    };
+                int length1 = output1.GetLength(0);
+                StringBuilder sb1 = new StringBuilder();
+                for (int index = 0; index < length1; index++)
+                {
+                    sb1.AppendLine(string.Join(delimiter, output1[index]));
+                }
+                File.AppendAllText(file, sb1.ToString());
+            }
+            ///////////////////////////////////////////////////////////////////
             Console.Clear();
             connString.Open();
             Console.WriteLine("Rata-rata IP Mahasiswa");
@@ -618,7 +724,23 @@ namespace db_tugas3
             while (sqlDr.Read())
             {
                 string IPAvg = Convert.ToString(sqlDr["Rata_rata_Mahasiswa"]);
-
+                //koding masukin ke file .-.
+                if (tulis == 1)
+                {
+                    string[][] output = new string[][]
+                    {
+                        new string[]{IPAvg}  
+                    };
+                    int length = output.GetLength(0);
+                    StringBuilder sb = new StringBuilder();
+                    for (int index = 0; index < length; index++)
+                    {
+                        sb.AppendLine(string.Join(delimiter, output[index]));
+                    }
+                    File.AppendAllText(file, sb.ToString());
+                    
+                }
+                //// ///////////////////////////////////
                 Console.WriteLine("{0}",IPAvg);
             }
             connString.Close();
@@ -629,6 +751,30 @@ namespace db_tugas3
 
         public void q4()
         {
+
+
+            ///////bkin file
+            int tulis = 0;
+            string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+             string file = dir + @"\Q4.csv"; /////rubah naama ini sesuai querynya
+            string delimiter = ",";
+            if (!File.Exists(file))
+            {
+                File.Create(file).Close();
+                tulis = 1;
+                string[][] output1 = new string[][]
+                    {
+                        new string[]{"Rata-rata IP Mahasiswi"} //// ubah value judul
+                    };
+                int length1 = output1.GetLength(0);
+                StringBuilder sb1 = new StringBuilder();
+                for (int index = 0; index < length1; index++)
+                {
+                    sb1.AppendLine(string.Join(delimiter, output1[index]));
+                }
+                File.AppendAllText(file, sb1.ToString());
+            }
+            ///////////////////////////////////////////////////////////////////
             Console.Clear();
             connString.Open();
             Console.WriteLine("Rata-rata IP Mahasiswi");
@@ -640,7 +786,23 @@ namespace db_tugas3
             while (sqlDr.Read())
             {
                 string IPAvg = Convert.ToString(sqlDr["Rata_rata_Mahasiswi"]);
-
+                //koding masukin ke file .-.
+                if (tulis == 1)
+                {
+                    string[][] output = new string[][]
+                    {
+                        new string[]{IPAvg} 
+                    };
+                    int length = output.GetLength(0);
+                    StringBuilder sb = new StringBuilder();
+                    for (int index = 0; index < length; index++)
+                    {
+                        sb.AppendLine(string.Join(delimiter, output[index]));
+                    }
+                    File.AppendAllText(file, sb.ToString());
+                    
+                }
+                //// ///////////////////////////////////
                 Console.WriteLine("{0}", IPAvg);
             }
             connString.Close();
@@ -650,6 +812,29 @@ namespace db_tugas3
         }
         public void q5()
         {
+
+            ///////bkin file
+            int tulis = 0;
+            string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+             string file = dir + @"\Q5.csv"; /////rubah naama ini sesuai querynya
+            string delimiter = ",";
+            if (!File.Exists(file))
+            {
+                File.Create(file).Close();
+                tulis = 1;
+                string[][] output1 = new string[][]
+                    {
+                        new string[]{"KodeMK","Rata-rata Nilai"} //// ubah value judul
+                    };
+                int length1 = output1.GetLength(0);
+                StringBuilder sb1 = new StringBuilder();
+                for (int index = 0; index < length1; index++)
+                {
+                    sb1.AppendLine(string.Join(delimiter, output1[index]));
+                }
+                File.AppendAllText(file, sb1.ToString());
+            }
+            ///////////////////////////////////////////////////////////////////
             Console.Clear();
             connString.Open();
             Console.WriteLine("KodeMK\t\tRata-rata Nilai\n\n");
@@ -659,10 +844,26 @@ namespace db_tugas3
 
             MySqlDataReader sqlDr = sqlcomm.ExecuteReader();
             while (sqlDr.Read())
-            {
+            {                    
                 string KodeMK = (string)sqlDr["KodeMK"];
                 string Avg = Convert.ToString(sqlDr["Rata_Rata"]);
-
+                //koding masukin ke file .-.
+                if (tulis == 1)
+                {
+                    string[][] output = new string[][]
+                    {
+                        new string[]{KodeMK,Avg} 
+                    };
+                    int length = output.GetLength(0);
+                    StringBuilder sb = new StringBuilder();
+                    for (int index = 0; index < length; index++)
+                    {
+                        sb.AppendLine(string.Join(delimiter, output[index]));
+                    }
+                    File.AppendAllText(file, sb.ToString());
+                    
+                }
+                //// ///////////////////////////////////
                 Console.WriteLine("{0}\t\t{1}",KodeMK, Avg);
             }
             connString.Close();
@@ -672,6 +873,30 @@ namespace db_tugas3
         }
         public void q6()
         {
+
+
+            ///////bkin file
+            int tulis = 0;
+            string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+             string file = dir + @"\Q6.csv"; /////rubah naama ini sesuai querynya
+            string delimiter = ",";
+            if (!File.Exists(file))
+            {
+                File.Create(file).Close();
+                tulis = 1;
+                string[][] output1 = new string[][]
+                    {
+                        new string[]{"NIM","Nama Mahasiswa","JenisK","IP"} //// ubah value judul
+                    };
+                int length1 = output1.GetLength(0);
+                StringBuilder sb1 = new StringBuilder();
+                for (int index = 0; index < length1; index++)
+                {
+                    sb1.AppendLine(string.Join(delimiter, output1[index]));
+                }
+                File.AppendAllText(file, sb1.ToString());
+            }
+            ///////////////////////////////////////////////////////////////////
             Console.Clear();
             connString.Open();
             Console.WriteLine("NIM\tNama Mahasiswa\t\t\t\t\tJenisK\t\tIP\n\n");
@@ -681,13 +906,29 @@ namespace db_tugas3
 
             MySqlDataReader sqlDr = sqlcomm.ExecuteReader();
             while (sqlDr.Read())
-            {
+            {                     
                 string NIM = Convert.ToString(sqlDr["NIM"]);
                 string nama = (string)sqlDr["Nama_Mahasiswa"];
                 
                 string jk = (string)sqlDr["JenisKelamin"];
                 string ip = Convert.ToString(sqlDr["ip"]);
-
+                //koding masukin ke file .-.
+                if (tulis == 1)
+                {
+                    string[][] output = new string[][]
+                    {
+                        new string[]{NIM,nama,jk,ip} 
+                    };
+                    int length = output.GetLength(0);
+                    StringBuilder sb = new StringBuilder();
+                    for (int index = 0; index < length; index++)
+                    {
+                        sb.AppendLine(string.Join(delimiter, output[index]));
+                    }
+                    File.AppendAllText(file, sb.ToString());
+                    
+                }
+                //// ///////////////////////////////////
                 if (nama.Length < 8)
                 {
                     Console.WriteLine("{0}\t{1}\t\t\t\t\t\t{2}\t\t{3}", NIM, nama,jk,ip);
@@ -724,6 +965,29 @@ namespace db_tugas3
 
         public void q7()
         {
+
+            ///////bkin file
+            int tulis = 0;
+            string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+             string file = dir + @"\Q7.csv"; /////rubah naama ini sesuai querynya
+            string delimiter = ",";
+            if (!File.Exists(file))
+            {
+                File.Create(file).Close();
+                tulis = 1;
+                string[][] output1 = new string[][]
+                    {
+                         new string[]{"NIM","Nama Mahasiswa","JenisK","IP"} //// ubah value judul
+                    };
+                int length1 = output1.GetLength(0);
+                StringBuilder sb1 = new StringBuilder();
+                for (int index = 0; index < length1; index++)
+                {
+                    sb1.AppendLine(string.Join(delimiter, output1[index]));
+                }
+                File.AppendAllText(file, sb1.ToString());
+            }
+            ///////////////////////////////////////////////////////////////////
             Console.Clear();
             connString.Open();
             Console.WriteLine("NIM\tNama Mahasiswa\t\t\t\t\tJenisK\t\tIP\n\n");
@@ -733,13 +997,29 @@ namespace db_tugas3
 
             MySqlDataReader sqlDr = sqlcomm.ExecuteReader();
             while (sqlDr.Read())
-            {
+            {                    
                 string NIM = Convert.ToString(sqlDr["NIM"]);
                 string nama = (string)sqlDr["Nama_Mahasiswa"];
 
                 string jk = (string)sqlDr["JenisKelamin"];
                 string ip = Convert.ToString(sqlDr["ip"]);
-
+                //koding masukin ke file .-.
+                if (tulis == 1)
+                {
+                    string[][] output = new string[][]
+                    {
+                        new string[]{NIM,nama,jk,ip}  
+                    };
+                    int length = output.GetLength(0);
+                    StringBuilder sb = new StringBuilder();
+                    for (int index = 0; index < length; index++)
+                    {
+                        sb.AppendLine(string.Join(delimiter, output[index]));
+                    }
+                    File.AppendAllText(file, sb.ToString());
+                    
+                }
+                //// ///////////////////////////////////
                 if (nama.Length < 8)
                 {
                     Console.WriteLine("{0}\t{1}\t\t\t\t\t\t{2}\t\t{3}", NIM, nama, jk, ip);
@@ -776,6 +1056,28 @@ namespace db_tugas3
 
         public void q8()
         {
+            ///////bkin file
+            int tulis = 0;
+            string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string file = dir + @"\Q8.csv"; /////rubah naama ini sesuai querynya
+            string delimiter = ",";
+            if (!File.Exists(file))
+            {
+                File.Create(file).Close();
+                tulis = 1;
+                string[][] output1 = new string[][]
+                    {
+                        new string[]{"NIM","Nama Mahasiswa","Nama MK"} //// ubah value judul
+                    };
+                int length1 = output1.GetLength(0);
+                StringBuilder sb1 = new StringBuilder();
+                for (int index = 0; index < length1; index++)
+                {
+                    sb1.AppendLine(string.Join(delimiter, output1[index]));
+                }
+                File.AppendAllText(file, sb1.ToString());
+            }
+            ///////////////////////////////////////////////////////////////////
             Console.Clear();
             connString.Open();
             Console.WriteLine("NIM\tNama Mahasiswa\t\t\t\t\tNama MK\n\n");
@@ -789,7 +1091,23 @@ namespace db_tugas3
                 string NIM = Convert.ToString(sqlDr["NIM"]);
                 string nama = (string)sqlDr["Nama_Mahasiswa"];
                 string namaMK = (string)sqlDr["NamaMK"];
+                //koding masukin ke file .-.
+                if (tulis == 1)
+                {
+                    string[][] output = new string[][]
+                    {
+                        new string[]{NIM,nama,namaMK} 
+                    };
+                    int length = output.GetLength(0);
+                    StringBuilder sb = new StringBuilder();
+                    for (int index = 0; index < length; index++)
+                    {
+                        sb.AppendLine(string.Join(delimiter, output[index]));
+                    }
+                    File.AppendAllText(file, sb.ToString());
 
+                }
+                //// ///////////////////////////////////
                 if (nama.Length < 8)
                 {
                     Console.WriteLine("{0}\t{1}\t\t\t\t\t\t{2}", NIM, nama, namaMK);
@@ -825,6 +1143,30 @@ namespace db_tugas3
         }
         public void q9()
         {
+
+
+            ///////bkin file
+            int tulis = 0;
+            string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+             string file = dir + @"\Q9.csv"; /////rubah naama ini sesuai querynya   
+            string delimiter = ",";
+            if (!File.Exists(file))
+            {
+                File.Create(file).Close();
+                tulis = 1;
+                string[][] output1 = new string[][]
+                    {
+                       new string[]{"KodeMK","Rata-rata Nilai","Jumlah"} //// ubah value judul
+                    };
+                int length1 = output1.GetLength(0);
+                StringBuilder sb1 = new StringBuilder();
+                for (int index = 0; index < length1; index++)
+                {
+                    sb1.AppendLine(string.Join(delimiter, output1[index]));
+                }
+                File.AppendAllText(file, sb1.ToString());
+            }
+            ///////////////////////////////////////////////////////////////////
             Console.Clear();
             connString.Open();
             Console.WriteLine("KodeMK\t\tRata-rata Nilai\t\tJumlah\n\n");
@@ -834,11 +1176,28 @@ namespace db_tugas3
 
             MySqlDataReader sqlDr = sqlcomm.ExecuteReader();
             while (sqlDr.Read())
-            {
+            {                   
+
                 string KodeMK = (string)sqlDr["KodeMK"];
                 string nilai = (string)sqlDr["Nilai_Huruf"];
                 string count = Convert.ToString(sqlDr["count(Nilai_Huruf)"]);
-
+                //koding masukin ke file .-.
+                if (tulis == 1)
+                {
+                    string[][] output = new string[][]
+                    {
+                        new string[]{KodeMK,nilai,count,} 
+                    };
+                    int length = output.GetLength(0);
+                    StringBuilder sb = new StringBuilder();
+                    for (int index = 0; index < length; index++)
+                    {
+                        sb.AppendLine(string.Join(delimiter, output[index]));
+                    }
+                    File.AppendAllText(file, sb.ToString());
+                    
+                }
+                //// ///////////////////////////////////
                 Console.WriteLine("{0}\t\t{1}\t\t\t{2}", KodeMK, nilai,count);
             }
             connString.Close();
@@ -849,6 +1208,29 @@ namespace db_tugas3
 
         public void q10()
         {
+
+            ///////bkin file
+            int tulis = 0;
+            string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string file = dir + @"\Q10.csv"; /////rubah naama ini sesuai querynya
+            string delimiter = ",";
+            if (!File.Exists(file))
+            {
+                File.Create(file).Close();
+                tulis = 1;
+                string[][] output1 = new string[][]
+                    {
+                        new string[]{"NIM","IP Awal","IP Konversi"} //// ubah value judul
+                    };
+                int length1 = output1.GetLength(0);
+                StringBuilder sb1 = new StringBuilder();
+                for (int index = 0; index < length1; index++)
+                {
+                    sb1.AppendLine(string.Join(delimiter, output1[index]));
+                }
+                File.AppendAllText(file, sb1.ToString());
+            }
+            ///////////////////////////////////////////////////////////////////
             ipkon();
             Console.Clear();
             Console.WriteLine("NIM\t\tIP Awal\t\tIP Konversi");
@@ -858,10 +1240,28 @@ namespace db_tugas3
             sqlcomm.CommandText = "SELECT * FROM db_tugas2.ip_kon;";
             MySqlDataReader sqlDr = sqlcomm.ExecuteReader();
             while (sqlDr.Read())
-            {
+            {                    
+
                 string NIM = Convert.ToString(sqlDr["NIM"]);
                 string IP = Convert.ToString(sqlDr["IP_Awal"]);
                 string IPKon = Convert.ToString(sqlDr["IP_Konversi"]);
+                //koding masukin ke file .-.
+                if (tulis == 1)
+                {
+                    string[][] output = new string[][]
+                    {
+                        new string[]{NIM,IP,IPKon} 
+                    };
+                    int length = output.GetLength(0);
+                    StringBuilder sb = new StringBuilder();
+                    for (int index = 0; index < length; index++)
+                    {
+                        sb.AppendLine(string.Join(delimiter, output[index]));
+                    }
+                    File.AppendAllText(file, sb.ToString());
+                    
+                }
+                //// ///////////////////////////////////
                 Console.WriteLine("{0}\t\t{1}\t\t{2}", NIM, IP,IPKon);
             }
             connString.Close();
